@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -134,7 +135,38 @@ public class MainActivity extends Activity {
 	}
 	
 	
-
+	public void buttonCari(View v){
+		EditText tv = (EditText) findViewById(R.id.etCari);
+		
+		Intent iActDua = new Intent(getApplicationContext(), ActivityDua.class);
+		
+		DbRelasi db = new DbRelasi(this);
+		db.open();
+		
+		String NIM = tv.getText().toString();
+		
+		//mendapatkan semua data dalam tabel
+		Relasi data = db.getRelasiByNIM(NIM);
+		
+		db.close();
+	
+		
+		if (data.nim != null) {
+			
+			DataList dataKirim = new DataList(data.id, data.nama, data.nim, data.alamat, data.hape);
+			
+			iActDua.putExtra("datakirim", dataKirim);
+			
+			startActivityForResult(iActDua, 98);
+		}else{
+			Toast t = Toast.makeText(this, "Tidak ditemukan NIM tersebut", Toast.LENGTH_SHORT);
+			t.show();
+		}
+		
+		
+	}
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

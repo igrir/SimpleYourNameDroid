@@ -8,28 +8,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lvMahasiswa"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="82dp" >
-    </RelativeLayout>
+        android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/lvMahasiswa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" >
-    </ListView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
-    <ListView
-        android:id="@+id/lvMahasiswa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/lvMahasiswa" >
-    </ListView>
+            <EditText
+                android:id="@+id/etCari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10" />
+
+            <Button
+                android:id="@+id/cari_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="buttonCari"
+                android:text="Cari" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvMahasiswa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+
+    </LinearLayout>
 
 </RelativeLayout>

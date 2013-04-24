@@ -122,4 +122,26 @@ public class DbRelasi {
 		
 	}
 	
+	
+	public Relasi getRelasiByNIM (String NIM) {
+		Cursor cur = null;
+		Relasi R = new Relasi();
+		
+		//kolom yang akan diambil
+		String[] COLS = new String[] {"ID", "NAMA", "NIM", "ALAMAT", "HAPE"};
+		//query
+		cur = db.query("RELASI", COLS, "NIM ='"+NIM+"'", null, null, null, null);
+
+		if (cur.getCount() > 0) { //ada data
+			cur.moveToFirst();
+			R.id = cur.getInt(0);
+			R.nama = cur.getString(1);
+			R.nim = cur.getString(2);
+			R.alamat = cur.getString(3);
+			R.hape = cur.getString(4);
+		}
+		
+		return R;		
+	}
+	
 }
